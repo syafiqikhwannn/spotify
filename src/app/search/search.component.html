@@ -1,0 +1,60 @@
+<p></p>
+<h2>Need Music ?</h2>
+<p class="need">Use NSI.spotify App to find new musics !</p>
+
+<head>
+  <style>
+    input[type=text] {
+      width: 60%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      box-sizing: border-box;
+      border: 3px solid #ccc;
+      -webkit-transition: 0.5s;
+      transition: 0.5s;
+      outline: none;
+    }
+
+    input[type=text]:focus {
+      border: 3px solid #46A457;
+    }
+  </style>
+</head>
+
+<body>
+
+  <form>
+    <div class="form-group">
+      <input type="text" [(ngModel)]="searchStr" class='form-control' placeholder="Search Artist ..."
+        [ngModelOptions]="{standalone: true}">
+    </div>
+    <button type="submit" (click)="searchMusic()" name="submit" class="btn btn-success">Search</button>
+  </form>
+
+
+  <head>
+    <style>
+      img {
+        border-radius: 60%;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <ng-container *ngIf="listRes !== null">
+      <div *ngFor="let artist of listRes">
+        <p align="center"><img *ngIf="artist.images.length > 0" [src]="artist.images[0].url" alt="No images" width="500"
+            height="500" class="center" /></p>
+        <p align="center" class="name"></p>
+        <h3 align="center"><b>{{artist.name}}</b></h3>
+        <p align="center" class="info">Genres : {{artist.genres}}</p>
+        <p align="center" class="info">Followers : {{artist.followers.total}}</p>
+        <p align="center" class="info">Popularity : {{artist.popularity}}</p>
+        <p align="center" class="info">Spotify Link : <a href="#">{{artist.external_urls.spotify}}</a></p>
+        <p align="center" class="info">ID : {{artist.id}}</p>
+      </div>
+    </ng-container>
